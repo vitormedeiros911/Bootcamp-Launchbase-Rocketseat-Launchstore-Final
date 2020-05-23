@@ -4,7 +4,7 @@ This is the final version of launchstore, a software that was created and teache
 ## Technologies used: 
 * HTML;
 * CSS;
-* CommomJs;
+* CommonJs;
 * Node.js;
 * NodeMailer;
 * Express;
