@@ -1,0 +1,27 @@
+{% extends "layout.njk" %}
+
+{% import "parts/card.njk" as card %}
+
+{% block content %}
+
+  {% call card.render("Registre-se", "user-register container")%}
+  <form method="POST" action="/users/register">
+
+    <div class="fields">
+      {%include "user/fields.njk"%}
+    </div>
+
+    <button class="button" type="submit">Salvar</button>
+
+    <script>
+      const formCreate = document.querySelector(".button")
+      formCreate.addEventListener("submit", function (event) {
+        const confirmar = confirm("Deseja se Registrar?")
+        if (!confirmar) {
+          event.preventDefault()
+        }
+      })
+    </script>
+  </form>
+  {% endcall %}
+{% endblock content %}

@@ -1,0 +1,33 @@
+{% extends "layout.njk" %}
+{% import "parts/card.njk" as card %}
+
+{% block content %}
+
+  {% call card.render("Detalhes do usuário", "user-dashboard container form")%}
+  <form class="" method="POST" action="/users?_method=PUT">
+    <div class="fields">
+      {%include "user/fields.njk"%}
+    </div>
+
+    <input type="hidden" name="id" value="{{user.id}}">
+
+    <button class="button edit" type="submit">Atualizar</button>
+
+  </form>
+
+  <form id="formDelete" action="/users?_method=DELETE" method="post">
+    <input type="hidden" name="id" value="{{user.id}}">
+    <button class="button delete" type="submit">Deletar</button>
+  </form>
+
+  {% endcall %}
+  <script>
+    const formDelete = document.querySelector("#formDelete")
+    formDelete.addEventListener("submit", async function (event) {
+      const confirmar = await confirm("Deseja deletar a sua conta? Essa operação é permanente.")
+      if (!confirmar) {
+        event.preventDefault()
+      }
+    })
+  </script>
+{% endblock content %}
